@@ -1,2 +1,38 @@
-<div>user: {{model.firstname}} {{model.lastname}}</div>
-<div>username: {{model.username}}</div>
+
+<div>
+    <p>{{model.firstname}} {{model.lastname}}</p>
+    <div class ="pull-right">
+        {{x-toggle value=isEditing showLabels=true size="small" on="" off="edit"}}
+
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<hr>
+
+<h2>User</h2>
+
+{{#if isEditing}}
+    <label>First Name:</label>
+    {{input value=model.firstname class="form-control"}}
+    <label>Last Name:</label>
+    {{input value=model.lastname class="form-control"}}
+{{else}}
+    <label>First Name:</label>
+    <div class="form-control-static">{{model.firstname}}</div>
+    <label>Last Name:</label>
+    <div class="form-control-static">{{model.lastname}}</div>
+{{/if}}
+
+<hr>
+
+<h2>Applications</h2>
+
+{{#each model.clients as |client|}}
+<label>Name</label>
+<div class="form-control-static">{{client.name}}</div>
+<label>Secret</label>
+<div class="form-control-static">{{client.secret}}</div>
+{{/each}}
+
+<button type="button" class="btn btn-success pull-right" disabled={{isClean}} {{action "saveUser"}}>save</button>

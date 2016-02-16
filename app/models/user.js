@@ -6,4 +6,6 @@ export default DS.Model.extend({
     username: DS.attr('string'),
     badPasswordAttempts: DS.attr('number'),
     isLockedOut: DS.attr('boolean'),
+
+    clients: DS.hasMany('client', {inverse:'userId'}),
 });
