@@ -1,16 +1,15 @@
 
-<div>
-    <p>{{model.firstname}} {{model.lastname}}</p>
-    <div class ="pull-right">
-        {{x-toggle value=isEditing showLabels=true size="small" on="" off="edit"}}
 
-    </div>
-    <div class="clearfix"></div>
-</div>
 
 <hr>
 
-<h2>User</h2>
+<div>
+    <div class ="pull-right">
+        {{x-toggle value=isEditing showLabels=true size="small" on="" off="edit"}}
+    </div>
+    <div class="clearfix"></div>
+</div>
+<h4>User</h4>
 
 {{#if isEditing}}
     <label>First Name:</label>
@@ -26,13 +25,7 @@
 
 <hr>
 
-<h2>Applications</h2>
-
-{{#each model.clients as |client|}}
-<label>Name</label>
-<div class="form-control-static">{{client.name}}</div>
-<label>Secret</label>
-<div class="form-control-static">{{client.secret}}</div>
-{{/each}}
+<h4>Applications</h4>
+{{liquid-outlet}}
 
 <button type="button" class="btn btn-success pull-right" disabled={{isClean}} {{action "saveUser"}}>save</button>

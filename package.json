@@ -38,7 +38,8 @@
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
     "ember-lodash": "0.0.6",
-    "ember-simple-auth": "1.0.1"
+    "ember-simple-auth": "1.0.1",
+    "liquid-fire": "0.23.0"
   },
   "dependencies": {
     "ember-inflector": "^1.9.4",
