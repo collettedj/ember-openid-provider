@@ -33,9 +33,10 @@ export default Base.extend({
     return this.ajaxPromise({
         type: "POST",
         url: "/api/v1/authenticate/login",
-        beforeSend: function(req){
-          req.setRequestHeader ("Authorization", "Basic " + btoa(username + ":" + password));
-        }
+        data: {username:username, password:password},
+        // beforeSend: function(req){
+        //   req.setRequestHeader ("Authorization", "Basic " + btoa(username + ":" + password));
+        // }
       }).then(function(res){
         return res;
       }, function(err){
