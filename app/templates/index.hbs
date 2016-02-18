@@ -1,5 +1,11 @@
-{{#unless session.isAuthenticated}}
-    {{#link-to 'login'}} <span class="glyphicon glyphicon-user"></span> Login{{/link-to}}
-{{/unless}}
+<div class="jumbotron">
+    <h2>Account Manager <small>Oauth 2.0 provied with OpenId Connect</small></h2>
+    {{#if session.isAuthenticated}}
+        <button type="button" class="btn btn-default" >{{#link-to "user"}}Go to user profile{{/link-to}}</button>
+    {{else}}
+        <button type="button" class="btn btn-default" >{{#link-to "login"}}Login{{/link-to}}</button>
+    {{/if}}
+</div>
 
-{{#link-to 'user'}}Users{{/link-to}}
+
+

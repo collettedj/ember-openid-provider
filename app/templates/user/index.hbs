@@ -1,5 +1,29 @@
+<div>
+    <div class ="pull-right">
+        <button type="button" class="btn btn-xs btn-success pull-right" disabled={{isClean}} {{action "toggleNewApp"}}>
+            <span class="glyphicon glyphicon-plus"></span> new
+        </button>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div style="margin-bottom:10px;"></div>
+
 <ul class="list-group">
 {{#each model.clients as |client|}}
     <li class="list-group-item">{{#link-to "user.client" client}}{{client.name}}{{/link-to}}</li>
 {{/each}}
 </ul>
+
+{{#if showNewApp}}
+    {{#modal-dialog close="toggleNewApp"
+        targetAttachment="center"
+        translucentOverlay=true}}
+        <label>Name</label>
+        {{input value=newClient.name class="form-control"}}
+        <label>Identifier</label>
+        {{input value=newClient.clientIdentifier class="form-control"}}
+        <label>Secret</label>
+        {{input value=newClient.secret class="form-control"}}
+    {{/modal-dialog}}
+{{/if}}

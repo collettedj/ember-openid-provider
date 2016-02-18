@@ -1,15 +1,12 @@
-
-
-
-<hr>
-
+<h3 class="text-info">User</h3>
 <div>
     <div class ="pull-right">
         {{x-toggle value=isEditing showLabels=true size="small" on="" off="edit"}}
+        <button type="button" class="btn btn-xs btn-success pull-right" disabled={{isClean}} {{action "saveUser"}}>save</button>
     </div>
     <div class="clearfix"></div>
 </div>
-<h4>User</h4>
+
 
 {{#if isEditing}}
     <label>First Name:</label>
@@ -23,9 +20,12 @@
     <div class="form-control-static">{{model.lastname}}</div>
 {{/if}}
 
-<hr>
 
-<h4>Applications</h4>
+<hr>
+<h3 class="text-info">Applications</h3>
+
 {{liquid-outlet}}
 
-<button type="button" class="btn btn-success pull-right" disabled={{isClean}} {{action "saveUser"}}>save</button>
+
+
+

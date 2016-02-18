@@ -1,3 +1,14 @@
+<div>
+    {{#link-to "user"}}&lt;&lt; back to applications{{/link-to}}
+    <div class ="pull-right">
+        {{x-toggle value=isEditing showLabels=true size="small" on="" off="edit"}}
+        <button type="button" class="btn btn-xs btn-success pull-right" disabled={{isClean}} {{action "saveUser"}}>
+            save
+        </button>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
 <label>Name</label>
 <div class="form-control-static">{{model.name}}</div>
 <label>Identifier</label>
