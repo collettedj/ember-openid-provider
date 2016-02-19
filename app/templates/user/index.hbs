@@ -19,11 +19,7 @@
     {{#modal-dialog close="toggleNewApp"
         targetAttachment="center"
         translucentOverlay=true}}
-        <label>Name</label>
-        {{input value=newClient.name class="form-control"}}
-        <label>Identifier</label>
-        {{input value=newClient.clientIdentifier class="form-control"}}
-        <label>Secret</label>
-        {{input value=newClient.secret class="form-control"}}
+        {{edit-client-app client=newClient}}
+        <button class="btn btn-success" {{action "saveNewClient"}}>Save</button>
     {{/modal-dialog}}
 {{/if}}

@@ -1,0 +1,13 @@
+<label>Name</label>
+{{input value=client.name class="form-control"}}
+<label>Description</label>
+{{input value=client.description class="form-control"}}
+<label>Identifier</label>
+{{input value=client.clientIdentifier class="form-control"}}
+<label>Secret</label>
+{{input value=client.secret class="form-control"}}
+
+{{client.name}}
+{{client.clientIdentifier}}
+{{client.secret}}
+{{yield client}}
