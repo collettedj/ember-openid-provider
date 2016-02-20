@@ -7,7 +7,7 @@
     <div class="clearfix"></div>
 </div>
 
-<div style="margin-bottom:10px;"></div>
+<div class="bottom10"></div>
 
 <ul class="list-group">
 {{#each model.clients as |client|}}
@@ -18,8 +18,21 @@
 {{#if showNewApp}}
     {{#modal-dialog close="toggleNewApp"
         targetAttachment="center"
-        translucentOverlay=true}}
-        {{edit-client-app client=newClient}}
-        <button class="btn btn-success" {{action "saveNewClient"}}>Save</button>
+        translucentOverlay=true
+        width=400}}
+        <div class="client-modal">
+            <form {{action 'saveNewClient' on='submit'}}>
+                <h3 class="text-info">New Client Application</h3>
+                <hr>
+                {{edit-client-app client=newClient isEditing=true}}
+                <hr>
+                <div class="pull-right">
+                    <button class="btn btn-default btn-sm right10" type="submit">Save</button>
+                    <button class="btn btn-default btn-sm" {{action "toggleNewApp"}} type="button">close</button>
+                </div>
+
+            </form>
+        </div>
+
     {{/modal-dialog}}
 {{/if}}

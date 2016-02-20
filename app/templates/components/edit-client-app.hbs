@@ -1,13 +1,19 @@
-<label>Name</label>
-{{input value=client.name class="form-control"}}
-<label>Description</label>
-{{input value=client.description class="form-control"}}
-<label>Identifier</label>
-{{input value=client.clientIdentifier class="form-control"}}
-<label>Secret</label>
-{{input value=client.secret class="form-control"}}
-
-{{client.name}}
-{{client.clientIdentifier}}
-{{client.secret}}
-{{yield client}}
+{{#liquid-if isEditing}}
+    <label>Name</label>
+    {{input value=client.name class="form-control"}}
+    <label>Description</label>
+    {{input value=client.description class="form-control"}}
+    <label>Identifier</label>
+    {{input value=client.clientIdentifier class="form-control"}}
+    <label>Secret</label>
+    {{input value=client.secret class="form-control"}}
+{{else}}
+    <label>Name</label>
+    <div class="form-control-static">{{client.name}}</div>
+    <label>Description</label>
+    <div class="form-control-static">{{client.description}}</div>
+    <label>Identifier</label>
+    <div class="form-control-static">{{client.clientIdentifier}}</div>
+    <label>Secret</label>
+    <div class="form-control-static">{{client.secret}}</div>
+{{/liquid-if}}

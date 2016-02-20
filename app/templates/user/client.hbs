@@ -2,16 +2,32 @@
     {{#link-to "user"}}&lt;&lt; back to applications{{/link-to}}
     <div class ="pull-right">
         {{x-toggle value=isEditing showLabels=true size="small" on="" off="edit"}}
-        <button type="button" class="btn btn-xs btn-success pull-right" disabled={{isClean}} {{action "saveUser"}}>
+        <button type="button" class="btn btn-xs btn-danger left5 pull-right" disabled={{isNotEditing}} {{action "toggleDeleteModal"}}>
+            &times; Delete
+        </button>
+        <button type="button" class="btn btn-xs btn-success left5 pull-right" disabled={{isClean}} {{action "saveClient"}}>
             save
         </button>
+
     </div>
     <div class="clearfix"></div>
 </div>
 
-<label>Name</label>
-<div class="form-control-static">{{model.name}}</div>
-<label>Identifier</label>
-<div class="form-control-static">{{model.clientIdentifier}}</div>
-<label>Secret</label>
-<div class="form-control-static">{{model.secret}}</div>
+{{edit-client-app client=model isEditing=isEditing}}
+
+{{#if showDeleteModal}}
+    {{#modal-dialog close="toggleDeleteModal"
+        targetAttachment="center"
+        translucentOverlay=true}}
+        <div class="client-modal">
+            <h3 class="text-danger">Delete Client Application</h3>
+            <hr>
+                <p>Are you sure you want to delete this client application?</p>
+            <hr>
+            <div class="pull-right">
+                <button class="btn btn-danger btn-sm right5" {{action "deleteClient"}}>Yes</button>
+                <button class="btn btn-default btn-sm" {{action "toggleDeleteModal"}} type="button">No</button>
+            </div>
+        </div>
+    {{/modal-dialog}}
+{{/if}}
