@@ -41,6 +41,7 @@
     "ember-lodash": "0.0.6",
     "ember-modal-dialog": "0.8.3",
     "ember-simple-auth": "1.0.1",
+    "ember-validations": "2.0.0-alpha.4",
     "liquid-fire": "0.23.0"
   },
   "dependencies": {
