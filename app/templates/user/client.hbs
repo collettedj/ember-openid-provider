@@ -1,5 +1,5 @@
 <div>
-    {{#link-to "user"}}&lt;&lt; back to applications{{/link-to}}
+    {{#link-to "user"}} <span class="glyphicon glyphicon-chevron-left"></span> back to applications{{/link-to}}
     <div class ="pull-right">
         {{x-toggle value=isEditing showLabels=true size="small" on="" off="edit"}}
         <button type="button" class="btn btn-xs btn-danger left5 pull-right" disabled={{isNotEditing}} {{action "toggleDeleteModal"}}>
