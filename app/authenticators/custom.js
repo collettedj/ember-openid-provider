@@ -1,25 +1,12 @@
 import Ember from 'ember';
 import Base from 'ember-simple-auth/authenticators/base';
+import ajaxPromise from '../utils/ajax-promise';
+
 
 export default Base.extend({
-  ajaxPromise: function(options) {
-    var request = new Ember.RSVP.Promise(function (resolve, reject) {
-      options.success = function (response) {
-        resolve(response);
-      };
-
-      options.error = function (reason) {
-        reject(reason);
-      };
-
-      return Ember.$.ajax(options);
-    });
-
-    return request;
-  },
 
   restore: function() {
-    return this.ajaxPromise({
+    return ajaxPromise({
       type: "GET",
       url: "/api/v1/authenticate/user",
     }).then(function(res){
@@ -30,7 +17,7 @@ export default Base.extend({
   },
 
   authenticate: function(username, password) {
-    return this.ajaxPromise({
+    return ajaxPromise({
         type: "POST",
         url: "/api/v1/authenticate/login",
         data: {username:username, password:password},
@@ -45,7 +32,7 @@ export default Base.extend({
   },
 
   invalidate: function() {
-    return this.ajaxPromise({
+    return ajaxPromise({
       type: "GET",
       url: "/api/v1/authenticate/signout",
       data: {},

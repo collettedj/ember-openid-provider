@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('user', function() {
     this.route('client', {path: '/:client_id'});
   });
+  this.route('registration');
 });
 
 export default Router;
