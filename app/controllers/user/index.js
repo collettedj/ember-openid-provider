@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+    notify: Ember.inject.service('notify'),
+
     showNewApp:false,
 
     newClient: null,
@@ -27,7 +29,11 @@ export default Ember.Controller.extend({
                     this.set("showNewApp", false);
                     return this.transitionToRoute('user.client', newClient.get('id'));
                 })
+                .then(() => {
+                    return this.get('notify').info("new app saved successfully");
+                })
                 .catch(err => {
+                    this.get('notify').warning("saving new app failed");
                     console.log(err);
                 });
         }

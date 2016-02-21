@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+    notify: Ember.inject.service('notify'),
 
     isEditing: false,
 
@@ -13,7 +14,13 @@ export default Ember.Controller.extend({
     actions:{
         saveClient(){
             this.get('model').save()
-                .catch(err => console.log(err.stack));
+                .then(() => {
+                    return this.get('notify').success("successfully saved the client application");
+                })
+                .catch(err => {
+                    this.get('notify').warning("save failed");
+                    console.log(err.stack);
+                });
         },
 
         toggleDeleteModal(){
@@ -26,7 +33,13 @@ export default Ember.Controller.extend({
                     this.set('showDeleteModal', false);
                     return this.transitionToRoute('user');
                 })
-                .catch(err => console.log(err.stack));
+                .then(() => {
+                    return this.get('notify').success("successfully deleted the client application");
+                })
+                .catch(err => {
+                    this.get('notify').warning("delete failed");
+                    console.log(err.stack);
+                });
         },
 
     }
