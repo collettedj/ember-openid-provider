@@ -1,4 +1,4 @@
-# Ember-openid-provider
+# Ember-openid-provider [![Build Status](https://travis-ci.org/collettedj/ember-openid-provider.svg?branch=master)](https://travis-ci.org/collettedj/ember-openid-provider)
 
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
