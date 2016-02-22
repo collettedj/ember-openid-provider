@@ -11,7 +11,8 @@ export default function() {
     this.get('/users/:id', function(db, request) {
       var id = request.params.id;
       return {
-        user: db.users.find(id)
+        user: db.users.find(id),
+        clients: db.clients.where({userId:id})
       };
     });
 

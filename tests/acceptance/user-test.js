@@ -6,6 +6,7 @@ moduleForAcceptance('Acceptance | user');
 
 test('visiting /user', function(assert) {
     server.createList('user', 3);
+    server.createList('client', 3, {userId:1});
     authenticateSession(this.application, {
         _id:1,
         firstname:"first",
@@ -16,5 +17,14 @@ test('visiting /user', function(assert) {
 
     andThen(function() {
         assert.equal(currentURL(), '/user');
+
+        const first = find('.user-first-name div').text();
+        const last = find('.user-last-name div').text();
+        const length = find('ul.client-list > li').length;
+        assert.equal(first, "first 1");
+        assert.equal(last, "last 1");
+        assert.equal(length, 3);
+
+
     });
 });

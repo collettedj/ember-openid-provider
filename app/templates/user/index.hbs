@@ -9,7 +9,7 @@
 
 <div class="bottom10"></div>
 
-<ul class="list-group">
+<ul class="list-group client-list">
 {{#each model.clients as |client|}}
     <li class="list-group-item">{{#link-to "user.client" client}}{{client.name}}{{/link-to}}</li>
 {{/each}}
