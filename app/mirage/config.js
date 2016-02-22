@@ -16,6 +16,15 @@ export default function() {
       };
     });
 
+    this.put('/users/:id', function(db, request) {
+      var id = request.params.id;
+      const user = JSON.parse(request.requestBody).user;
+      user._id = id;
+      return {
+        user: user,
+      };
+    });
+
     this.get('/clients', function(db){
       return {
         clients: db.clients.find()
