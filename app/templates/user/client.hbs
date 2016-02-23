@@ -13,7 +13,7 @@
     <div class="clearfix"></div>
 </div>
 
-{{edit-client-app client=model isEditing=isEditing}}
+{{edit-client-app client=model validator=clientValidator isEditing=isEditing showErrors=showErrors}}
 
 {{#if showDeleteModal}}
     {{#modal-dialog close="toggleDeleteModal"

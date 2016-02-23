@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import handleError from '../../utils/handle-error';
+import ClientValidator from '../../utils/client-validator';
+
 
 export default Ember.Controller.extend({
     notify: Ember.inject.service('notify'),
@@ -7,6 +9,17 @@ export default Ember.Controller.extend({
     showNewApp:false,
 
     newClient: null,
+
+    clientValidator: Ember.computed('newClient', {
+        get(){
+            return ClientValidator.create({
+                container: this.get('container'),
+                client: this.get('newClient')
+            });
+        }
+    }),
+
+    showClientErrors: false,
 
     actions:{
         toggleNewApp(){
@@ -25,19 +38,23 @@ export default Ember.Controller.extend({
 
         saveNewClient(){
             const newClient = this.get('newClient');
-            newClient.save()
-                .then(() => {
-                    this.set("showNewApp", false);
-                    return this.transitionToRoute('user.client', newClient.get('id'));
-                })
-                .then(() => {
-                    return this.get('notify').info("new app saved successfully");
-                })
-                .catch(err => {
-                    handleError(err, this.get('notify'), "saving new app failde");
-                    // this.get('notify').warning("saving new app failed");
-                    // console.log(err);
-                });
+            if(this.get('clientValidator.isValid')){
+                newClient.save()
+                    .then(() => {
+                        this.set("showNewApp", false);
+                        return this.transitionToRoute('user.client', newClient.get('id'));
+                    })
+                    .then(() => {
+                        return this.get('notify').info("new app saved successfully");
+                    })
+                    .catch(err => {
+                        handleError(err, this.get('notify'), "saving new app failed");
+                    });
+            } else {
+                this.get('notify').warning("Please fix errors then try again");
+                this.set('showClientErrors', true);
+            }
+
         }
     }
 });

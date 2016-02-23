@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ClientValidator from '../../utils/client-validator';
 
 export default Ember.Controller.extend({
     notify: Ember.inject.service('notify'),
@@ -11,16 +12,33 @@ export default Ember.Controller.extend({
 
     showDeleteModal: false,
 
+    showErrors: false,
+
+    clientValidator: Ember.computed('model', {
+        get(){
+            return ClientValidator.create({
+                container: this.get('container'),
+                client: this.get('model')
+            });
+        }
+    }),
+
     actions:{
         saveClient(){
-            this.get('model').save()
-                .then(() => {
-                    return this.get('notify').success("successfully saved the client application");
-                })
-                .catch(err => {
-                    this.get('notify').warning("save failed");
-                    console.log(err.stack);
-                });
+            if(this.get('clientValidator.isValid')){
+                this.get('model').save()
+                    .then(() => {
+                        return this.get('notify').success("successfully saved the client application");
+                    })
+                    .catch(err => {
+                        this.get('notify').warning("save failed");
+                        console.log(err.stack);
+                    });
+            } else {
+                this.get('notify').warning("Please fix errors then try again");
+                this.set('showErrors', true);
+            }
+
         },
 
         toggleDeleteModal(){

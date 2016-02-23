@@ -18,21 +18,19 @@
 {{#if showNewApp}}
     {{#modal-dialog close="toggleNewApp"
         targetAttachment="center"
-        translucentOverlay=true
-        width=400}}
+        translucentOverlay=true}}
         <div class="client-modal">
             <form {{action 'saveNewClient' on='submit'}}>
                 <h3 class="text-info">New Client Application</h3>
                 <hr>
-                {{edit-client-app client=newClient isEditing=true}}
+                    {{edit-client-app client=newClient validator=clientValidator isEditing=true showErrors=showClientErrors }}
                 <hr>
                 <div class="pull-right">
                     <button class="btn btn-default btn-sm right10" type="submit">Save</button>
                     <button class="btn btn-default btn-sm" {{action "toggleNewApp"}} type="button">close</button>
                 </div>
-
+                {{isClientValid}}
             </form>
         </div>
-
     {{/modal-dialog}}
 {{/if}}

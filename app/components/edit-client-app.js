@@ -1,32 +1,13 @@
 import Ember from 'ember';
-import EmberValidations from 'ember-validations';
 
-export default Ember.Component.extend(EmberValidations, {
+export default Ember.Component.extend({
 
     isEditing: false,
 
     client: null,
 
-    validations:{
-        "client.name": {
-          presence: true,
-          length: {minimum: 5}
-        },
+    showErrors: false,
 
-        "client.description": {
-          presence: true,
-          length: {minimum: 5}
-        },
-
-        "client.clientIdentifier": {
-          presence: true,
-          length: {minimum: 5}
-        },
-
-        "client.secret": {
-          presence: true,
-          length: {minimum: 5}
-        },
-    }
+    validator: null,
 
 });

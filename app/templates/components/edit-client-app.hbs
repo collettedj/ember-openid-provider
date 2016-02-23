@@ -1,34 +1,42 @@
-<div class="form-group {{if errors.client.name "has-error" "has-success"}}">
-  <label class="control-label">Name {{errors.client.name}}</label>
-  {{#if isEditing}}
-    {{input value=client.name class="form-control"}}
-  {{else}}
-    <div class="form-control-static">{{client.name}}</div>
-  {{/if}}
+<div class="form-group {{if showErrors (if validator.errors.client.name "has-error" "has-success")}}">
+    <label class="control-label">Name
+        <span class="err-msg">{{if showErrors validator.errors.client.name}}</span>
+    </label>
+    {{#if isEditing}}
+        {{input value=client.name class="form-control"}}
+    {{else}}
+        <div class="form-control-static">{{client.name}}</div>
+    {{/if}}
 </div>
-<div class="form-group {{if errors.client.description "has-error" "has-success"}}">
-  <label class="control-label">Description {{errors.client.description}}</label>
-  {{#if isEditing}}
-    {{input value=client.description class="form-control"}}
-  {{else}}
-    <div class="form-control-static">{{client.description}}</div>
-  {{/if}}
+<div class="form-group {{if showErrors (if validator.errors.client.description "has-error" "has-success")}}">
+    <label class="control-label">Description
+        <span class="err-msg">{{if showErrors validator.errors.client.description}}</span>
+    </label>
+    {{#if isEditing}}
+        {{input value=client.description class="form-control"}}
+    {{else}}
+        <div class="form-control-static">{{client.description}}</div>
+    {{/if}}
 </div>
-<div class="form-group {{if errors.client.clientIdentifier "has-error" "has-success"}}">
-  <label class="control-label">Identifier {{errors.client.clientIdentifier}}</label>
-  {{#if isEditing}}
-    {{input value=client.clientIdentifier class="form-control"}}
-  {{else}}
-    <div class="form-control-static">{{client.clientIdentifier}}</div>
-  {{/if}}
+<div class="form-group {{if showErrors (if validator.errors.client.clientIdentifier "has-error" "has-success")}}">
+    <label class="control-label">Identifier
+        <span class="err-msg">{{if showErrors validator.errors.client.clientIdentifier}}</span>
+    </label>
+    {{#if isEditing}}
+        {{input value=client.clientIdentifier class="form-control"}}
+    {{else}}
+        <div class="form-control-static">{{client.clientIdentifier}}</div>
+    {{/if}}
 </div>
-<div class="form-group {{if errors.client.secret "has-error" "has-success"}}">
-  <label class="control-label">Secret {{errors.client.secret}}</label>
-  {{#if isEditing}}
-    {{input value=client.secret class="form-control"}}
-  {{else}}
-    <div class="form-control-static">{{client.secret}}</div>
-  {{/if}}
+<div class="form-group {{if showErrors (if validator.errors.client.secret "has-error" "has-success")}}">
+    <label class="control-label">Secret
+        <span class="err-msg">{{if showErrors validator.errors.client.secret}}</span>
+    </label>
+    {{#if isEditing}}
+        {{input value=client.secret class="form-control"}}
+    {{else}}
+        <div class="form-control-static">{{client.secret}}</div>
+    {{/if}}
 </div>
 
 

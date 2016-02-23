@@ -5,6 +5,8 @@ export default function handleError(err, notify) {
     if(err){
         if(err.errors && err.errors.code && err.errors.errmsg){
             message = err.errors.errmsg;
+        } else if (err.errors){
+            message = _.values(_.mapValues(err.errors, m => m.message)).toString();
         } else if(err.responseJSON){
             message = err.responseJSON;
         } else if (err.responseText){
