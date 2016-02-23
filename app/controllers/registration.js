@@ -1,9 +1,11 @@
 import Ember from 'ember';
 import EmberValidations from 'ember-validations';
-import _ from 'lodash/lodash';
 import ajaxPromise from '../utils/ajax-promise';
+import handleError from '../utils/handle-error';
 
 export default Ember.Controller.extend(EmberValidations, {
+    notify: Ember.inject.service('notify'),
+
     session: Ember.inject.service('session'),
 
     isNotValid: Ember.computed.not('isValid'),
@@ -55,16 +57,7 @@ export default Ember.Controller.extend(EmberValidations, {
                     return this.get('session').authenticate('authenticator:custom', username, password);
                 })
                 .catch(err => {
-                    let message = {};
-                    if(err.responseJSON){
-                        message = err.responseJSON;
-                    } else if (err.error && !_.isFunction(err.error)) {
-                        message = err.error;
-                    } else {
-                        message = err;
-                    }
-                    console.log(message);
-                    this.set('errorMessage', JSON.stringify(message));
+                    handleError(err, this.get('notify'));
                 });
             }
         }
