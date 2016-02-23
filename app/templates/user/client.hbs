@@ -2,10 +2,10 @@
     {{#link-to "user"}} <span class="glyphicon glyphicon-chevron-left"></span> back to applications{{/link-to}}
     <div class ="pull-right">
         {{x-toggle value=isEditing showLabels=true size="small" on="" off="edit"}}
-        <button type="button" class="btn btn-xs btn-danger left5 pull-right" disabled={{isNotEditing}} {{action "toggleDeleteModal"}}>
+        <button type="button" class="btn btn-xs btn-danger left5 pull-right delete-client-btn" disabled={{isNotEditing}} {{action "toggleDeleteModal"}}>
             &times; Delete
         </button>
-        <button type="button" class="btn btn-xs btn-success left5 pull-right" disabled={{isClean}} {{action "saveClient"}}>
+        <button type="button" class="btn btn-xs btn-success left5 pull-right save-client-btn" disabled={{isClean}} {{action "saveClient"}}>
             save
         </button>
 

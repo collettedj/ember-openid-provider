@@ -34,7 +34,7 @@ export default function() {
     this.get('/clients/:id', function(db, request) {
       var id = request.params.id;
       return {
-        user: db.clients.find(id)
+        client: db.clients.find(id)
       };
     });
 
