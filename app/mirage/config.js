@@ -44,7 +44,7 @@ export default function() {
       return body;
     });
 
-    this.post('/authenticate/login', function(db, request){
+    this.post('/authenticate/login', function(){
       return {
         _id: 5,
         firstname:"first",
