@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import handleError from '../../utils/handle-error';
 
 export default Ember.Controller.extend({
     notify: Ember.inject.service('notify'),
@@ -33,8 +34,9 @@ export default Ember.Controller.extend({
                     return this.get('notify').info("new app saved successfully");
                 })
                 .catch(err => {
-                    this.get('notify').warning("saving new app failed");
-                    console.log(err);
+                    handleError(err, this.get('notify'), "saving new app failde");
+                    // this.get('notify').warning("saving new app failed");
+                    // console.log(err);
                 });
         }
     }

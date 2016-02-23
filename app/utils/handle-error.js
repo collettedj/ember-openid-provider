@@ -3,7 +3,9 @@ import _ from 'lodash/lodash';
 export default function handleError(err, notify) {
     let message = {};
     if(err){
-        if(err.responseJSON){
+        if(err.errors && err.errors.code && err.errors.errmsg){
+            message = err.errors.errmsg;
+        } else if(err.responseJSON){
             message = err.responseJSON;
         } else if (err.responseText){
             message = err.responseText;
