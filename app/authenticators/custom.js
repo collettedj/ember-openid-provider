@@ -20,7 +20,9 @@ export default Base.extend({
     return ajaxPromise({
         type: "POST",
         url: "/api/v1/authenticate/login",
-        data: {username:username, password:password},
+        data: JSON.stringify({username:username, password:password}),
+        dataType: "json",
+        contentType: "application/json",
         // beforeSend: function(req){
         //   req.setRequestHeader ("Authorization", "Basic " + btoa(username + ":" + password));
         // }

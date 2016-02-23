@@ -38,6 +38,21 @@ export default function() {
       };
     });
 
+    this.post('/authenticate/signup', function(db, request){
+      const body = JSON.parse(request.requestBody);
+      body._id=5;
+      return body;
+    });
+
+    this.post('/authenticate/login', function(db, request){
+      return {
+        _id: 5,
+        firstname:"first",
+        lastname:"last",
+        username:"test",
+      };
+    });
+
   // These comments are here to help you get started. Feel free to delete them.
 
   /*

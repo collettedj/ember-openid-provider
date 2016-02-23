@@ -1,29 +1,29 @@
 <h1 class="text-info">Registration</h1>
 
 <form {{action 'registerUser' on='submit'}}>
-    <div class="form-group {{if errors.model.firstname "has-error" "has-success"}}">
+    <div class="form-group reg-firstname {{if errors.model.firstname "has-error" "has-success"}}">
         <label class="control-label">First Name {{errors.model.firstname}}</label>
         {{input value=model.firstname class="form-control"}}
     </div>
-    <div class="form-group {{if errors.model.lastname "has-error" "has-success"}}">
+    <div class="form-group reg-lastname {{if errors.model.lastname "has-error" "has-success"}}">
         <label class="control-label">Last Name {{errors.model.lastname}}</label>
         {{input value=model.lastname class="form-control"}}
     </div>
-    <div class="form-group {{if errors.model.username "has-error" "has-success"}}">
+    <div class="form-group reg-username {{if errors.model.username "has-error" "has-success"}}">
          <label class="control-label">Username {{errors.model.username}}</label>
         {{input value=model.username class="form-control"}}
     </div>
-    <div class="form-group {{if errors.model.password "has-error" "has-success"}}">
+    <div class="form-group reg-password {{if errors.model.password "has-error" "has-success"}}">
         <label class="control-label">Password {{errors.model.password}}</label>
         {{input type="password" value=model.password class="form-control"}}
     </div>
-    <div class="form-group {{if errors.model.passwordConfirmation "has-error" "has-success"}}">
+    <div class="form-group reg-password-conf {{if errors.model.passwordConfirmation "has-error" "has-success"}}">
         <label class="control-label">Password Confirmation {{errors.model.passwordConfirmation}}</label>
         {{input type="password" value=model.passwordConfirmation class="form-control"}}
     </div>
 
     <hr>
-    <button class="btn btn-success pull-right" type="submit">Register</button>
+    <button class="registration-btn btn btn-success pull-right" type="submit" disabled={{isNotValid}}>Register</button>
     {{#if errorMessage}}
         <p>{{errorMessage}}</p>
     {{/if}}

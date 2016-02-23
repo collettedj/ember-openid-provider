@@ -6,6 +6,8 @@ import ajaxPromise from '../utils/ajax-promise';
 export default Ember.Controller.extend(EmberValidations, {
     session: Ember.inject.service('session'),
 
+    isNotValid: Ember.computed.not('isValid'),
+
     validations:{
         "model.firstname": {
           presence: true,
@@ -41,12 +43,14 @@ export default Ember.Controller.extend(EmberValidations, {
                 ajaxPromise({
                     type: "POST",
                     url: "/api/v1/authenticate/signup",
-                    data: {
+                    contentType:"application/json",
+                    data: JSON.stringify({
                         username:username,
                         password:password,
                         firstname:firstname,
                         lastname:lastname
-                    }
+                    }),
+                    dataType:'json'
                 }).then(() => {
                     return this.get('session').authenticate('authenticator:custom', username, password);
                 })
