@@ -10,6 +10,36 @@ export default Ember.Controller.extend(EmberValidations, {
 
     isNotValid: Ember.computed.not('isValid'),
 
+    showErrors: false,
+
+    getErrorDisplay(fieldname){
+        return this.get('showErrors') ? this.get(fieldname): "";
+    },
+
+    firstnameError: Ember.computed('showErrors', 'errors.model.firstname', {
+        get(){
+            return this.getErrorDisplay("errors.model.firstname");
+        }
+    }),
+
+    lastnameError: Ember.computed('showErrors', 'errors.model.lastname', {
+        get(){
+            return this.getErrorDisplay("errors.model.lastname");
+        }
+    }),
+
+    usernameError: Ember.computed('showErrors', 'errors.model.username', {
+        get(){
+            return this.getErrorDisplay("errors.model.username");
+        }
+    }),
+
+    passwordError: Ember.computed('showErrors', 'errors.model.password', {
+        get(){
+            return this.getErrorDisplay("errors.model.password");
+        }
+    }),
+
     validations:{
         "model.firstname": {
           presence: true,
@@ -59,6 +89,9 @@ export default Ember.Controller.extend(EmberValidations, {
                 .catch(err => {
                     handleError(err, this.get('notify'));
                 });
+            } else {
+                this.get('notify').warning("Please fix errors then try again");
+                this.set('showErrors', true);
             }
         }
     }

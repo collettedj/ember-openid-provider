@@ -1,29 +1,39 @@
 <h1 class="text-info">Registration</h1>
 
 <form {{action 'registerUser' on='submit'}}>
-    <div class="form-group reg-firstname {{if errors.model.firstname "has-error" "has-success"}}">
-        <label class="control-label">First Name {{errors.model.firstname}}</label>
+    <div class="form-group reg-firstname {{if showErrors (if errors.model.firstname "has-error" "has-success")}}">
+        <label class="control-label">First Name
+            <span class="err-msg">{{if showErrors errors.model.firstname}}</span>
+        </label>
         {{input value=model.firstname class="form-control"}}
     </div>
-    <div class="form-group reg-lastname {{if errors.model.lastname "has-error" "has-success"}}">
-        <label class="control-label">Last Name {{errors.model.lastname}}</label>
+    <div class="form-group reg-lastname {{if showErrors (if errors.model.lastname "has-error" "has-success") }}">
+        <label class="control-label">Last Name
+            <span class="err-msg">{{if showErrors errors.model.lastname}}</span>
+        </label>
         {{input value=model.lastname class="form-control"}}
     </div>
-    <div class="form-group reg-username {{if errors.model.username "has-error" "has-success"}}">
-         <label class="control-label">Username {{errors.model.username}}</label>
+    <div class="form-group reg-username {{if showErrors (if errors.model.username "has-error" "has-success")}}">
+         <label class="control-label">Username
+            <span class="err-msg">{{if showErrors errors.model.username}}</span>
+        </label>
         {{input value=model.username class="form-control"}}
     </div>
-    <div class="form-group reg-password {{if errors.model.password "has-error" "has-success"}}">
-        <label class="control-label">Password {{errors.model.password}}</label>
+    <div class="form-group reg-password {{if showErrors (if errors.model.password "has-error" "has-success")}}">
+        <label class="control-label">Password
+            <span class="err-msg">{{if showErrors errors.model.password}}</span>
+        </label>
         {{input type="password" value=model.password class="form-control"}}
     </div>
-    <div class="form-group reg-password-conf {{if errors.model.passwordConfirmation "has-error" "has-success"}}">
-        <label class="control-label">Password Confirmation {{errors.model.passwordConfirmation}}</label>
+    <div class="form-group reg-password-conf {{if showErrors (if errors.model.passwordConfirmation "has-error" "has-success")}}">
+        <label class="control-label">Password Confirmation
+            <span class="err-msg">{{if showErrors errors.model.passwordConfirmation}}</span>
+        </label>
         {{input type="password" value=model.passwordConfirmation class="form-control"}}
     </div>
 
     <hr>
-    <button class="registration-btn btn btn-success pull-right" type="submit" disabled={{isNotValid}}>Register</button>
+    <button class="registration-btn btn btn-success pull-right" type="submit">Register</button>
     {{#if errorMessage}}
         <p>{{errorMessage}}</p>
     {{/if}}
