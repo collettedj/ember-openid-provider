@@ -6,16 +6,23 @@ export default Ember.Controller.extend(EmberValidations, {
 
     isClean: Ember.computed.not('model.hasDirtyAttributes'),
 
+    showErrors: false,
+
     actions:{
         saveUser(){
-            this.get('model').save()
-                .then(() => {
-                    return this.get('notify').success("save successful");
-                })
-                .catch(err => {
-                    this.get('notify').warning("save failed");
-                    alert(err);
-                });
+            if(this.get('isValid')){
+                this.get('model').save()
+                    .then(() => {
+                        return this.get('notify').success("save successful");
+                    })
+                    .catch(err => {
+                        this.get('notify').warning("save failed");
+                        alert(err);
+                    });
+            } else {
+                this.get('notify').warning("Please fix errors then try again");
+                this.set('showErrors', true);
+            }
         }
     },
 

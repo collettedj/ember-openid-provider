@@ -39,12 +39,25 @@ test('visiting /user in edit mode', function(assert) {
     setAuthenticatedUser(this);
     visit('/user');
     click('.x-toggle-btn');
+
     andThen(function() {
         assert.equal(currentURL(), '/user');
         const first = find('.user-first-name input').val();
         const last = find('.user-last-name input').val();
         assert.equal(first, "first 1");
         assert.equal(last, "last 1");
+
+        fillIn('.user-first-name input', '');
+        fillIn('.user-last-name input', '');
+        click('.user-save-btn');
+    });
+
+    andThen(function(){
+        const firstnameErr = find('.user-first-name .err-msg').text();
+        const lastnameErr = find('.user-last-name .err-msg').text();
+
+        assert.ok(firstnameErr.indexOf("can't be blank") > -1);
+        assert.ok(lastnameErr.indexOf("can't be blank") > -1);
     });
 });
 

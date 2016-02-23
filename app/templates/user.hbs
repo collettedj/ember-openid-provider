@@ -7,21 +7,25 @@
     <div class="clearfix"></div>
 </div>
 
-<div class="form-group user-first-name {{if errors.model.firstname "has-error" "has-success"}}">
-  <label class="control-label">First Name {{errors.model.firstname}}</label>
-  {{#if isEditing}}
-    {{input value=model.firstname class="form-control"}}
-  {{else}}
-    <div class="form-control-static">{{model.firstname}}</div>
-  {{/if}}
+<div class="form-group user-first-name {{if showErrors (if errors.model.firstname "has-error" "has-success")}}">
+    <label class="control-label">First Name
+        <span class="err-msg">{{if showErrors errors.model.firstname}}</span>
+    </label>
+    {{#if isEditing}}
+        {{input value=model.firstname class="form-control"}}
+    {{else}}
+        <div class="form-control-static">{{model.firstname}}</div>
+    {{/if}}
 </div>
-<div class="form-group user-last-name {{if errors.model.lastname "has-error" "has-success"}}">
-  <label class="control-label">Last Name {{errors.model.lastname}}</label>
-  {{#if isEditing}}
-    {{input value=model.lastname class="form-control"}}
-  {{else}}
-    <div class="form-control-static">{{model.lastname}}</div>
-  {{/if}}
+<div class="form-group user-last-name {{if showErrors (if errors.model.lastname "has-error" "has-success")}}">
+    <label class="control-label">Last Name
+        <span class="err-msg">{{if showErrors errors.model.lastname}}</span>
+    </label>
+    {{#if isEditing}}
+        {{input value=model.lastname class="form-control"}}
+    {{else}}
+        <div class="form-control-static">{{model.lastname}}</div>
+    {{/if}}
 </div>
 
 <hr>
