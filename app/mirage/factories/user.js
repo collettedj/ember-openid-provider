@@ -6,5 +6,5 @@ export default Mirage.Factory.extend({
     firstname(i) { return `first ${i+1}`; },
     lastname(i) { return `last ${i+1}`; },
     username(i) { return `user${i+1}`; },
-    password(i) { return `password${i+1}`; },
+    password(i) { return `password${i+1}00AAaa`; },
 });

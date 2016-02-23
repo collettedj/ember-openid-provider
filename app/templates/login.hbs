@@ -1,12 +1,19 @@
 <form {{action 'authenticate' on='submit'}}>
-  <label for="identification">Login</label>
-  {{input value='identification' placeholder='Enter Login' value=identification class="form-control"}}
-  <label for="password">Password</label>
-  {{input value='password' placeholder='Enter Password' type='password' value=password class="form-control"}}
 
-  <hr>
-  <button class="btn btn-success" type="submit">Login</button>
-  {{#if errorMessage}}
-    <p>{{errorMessage}}</p>
-  {{/if}}
+    <div class="form-group login-username {{if showErrors (if errors.identification "has-error" "has-success")}}">
+        <label class="control-label">Username
+            <span class="err-msg">{{if showErrors errors.identification}}</span>
+        </label>
+        {{input value=identification class="form-control" placeholder="Enter Username"}}
+    </div>
+
+    <div class="form-group login-password {{if showErrors (if errors.password "has-error" "has-success")}}">
+        <label class="control-label">Password
+            <span class="err-msg">{{if showErrors errors.password}}</span>
+        </label>
+        {{input value=password class="form-control" placeholder='Enter Password' type="password"}}
+    </div>
+
+    <hr>
+    <button class="btn btn-success pull-right login-btn" type="submit">Login</button>
 </form>
