@@ -31,7 +31,7 @@ export default Ember.Controller.extend(EmberValidations, {
 
         "password": {
             presence: true,
-            length: {minimum: 10}
+            length: {minimum: 6}
         },
     }
 });

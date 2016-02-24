@@ -58,9 +58,9 @@ export default Ember.Controller.extend(EmberValidations, {
 
         "model.password": {
           presence: true,
-          length: {minimum:10},
+          length: {minimum:6},
           confirmation:true,
-          format: { with: /(?=.*[a-z].*[a-z])(?=.*[A-Z].*[A-Z])(?=.*[0-9].*[0-9])/g, allowBlank: false, message: 'invalid password'  }
+          // format: { with: /(?=.*[a-z].*[a-z])(?=.*[A-Z].*[A-Z])(?=.*[0-9].*[0-9])/g, allowBlank: false, message: 'invalid password'  }
         },
     },
 
